@@ -27,10 +27,16 @@ Vue.component('product', {
             <div>
                 <button v-for="(size) in sizes">{{ size }}</button>
             </div>
-            <button v-on:click="addToCart" :disabled="!inStock" :class="[!inStock ? disabledButton : '']">Add to
-                cart</button>
-            <button @click="deleteFromCart" :disabled="!inStock" :class="[!inStock ? disabledButton : '']">Deleted from cart
-            </button>
+            <div>
+                <button v-on:click="addToCart" :disabled="!inStock" :class="[!inStock ? disabledButton : '']">
+                    Add to cart
+                </button>
+                <button @click="deleteFromCart" :disabled="!inStock" :class="[!inStock ? disabledButton : '']">
+                    Deleted from cart
+                </button>
+            </div>
+            
+            <product-review></product-review>
         </div>
     </div>
     `,
@@ -61,12 +67,10 @@ Vue.component('product', {
     },
     methods: {
         addToCart() {
-            this.cart += 1;
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },
         deleteFromCart() {
-            if (this.cart > 0) {
-                this.cart -= 1;
-            }
+            this.$emit('delete-from-cart');
         },
         updateProduct(index) {
             this.selectedVariant = index;
@@ -100,13 +104,31 @@ Vue.component('product', {
 
         }
     },
-})
+});
 
+Vue.component('product-review', {
+    template: `
+        <input v-model="name">
+    `,
+    data(){
+        return {
+            name: null
+        }
+    }
+});
 
 let app = new Vue({
     el: '#app',
     data: {
         premium: true,
-        cart: 0,
+        cart: [],
+    },
+    methods: {
+        updateCart(id) {
+            this.cart.push(id);
+        },
+        updateCartAgan() {
+            this.cart.pop();
+        },
     },
 })
