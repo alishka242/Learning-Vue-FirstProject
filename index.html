@@ -10,11 +10,13 @@
         .product {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
+            margin: 20px;
+            justify-content: space-between;
             align-items: center;
+            min-height: 400px;
         }
 
-        .color-box { 
+        .color-box {
             width: 40px;
             height: 40px;
             margin-top: 5px;
@@ -27,36 +29,59 @@
         .disabledButton {
             text-decoration: line-through;
         }
-        .blue{
+
+        .blue {
             background-color: blue;
         }
-        form{
+
+        form {
             border: 1px solid rgb(186, 186, 186);
             padding: 5px;
             width: 280px;
             background-color: rgb(241, 241, 241);
             min-height: 180px;
+            margin-top: 15px;
         }
-        form p{
+
+        form p {
             display: flex;
             align-items: flex-start;
             justify-content: center;
         }
-        .recommend{
+
+        .recommend {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
-        form p label{
+
+        form p label {
             display: inline-block;
             width: 54px;
         }
-        .review{
+
+        .review {
+            height: 290px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            min-height: 370px;
+            overflow: auto;
+        }
+
+        .tab {
+            background-color: rgb(228, 225, 225);
+            border-right: 1px solid grey;
+            padding: 5px;
+        }
+
+        .activeTab {
+            background-color: hotpink;
+        }
+
+        .producTabs {
+            min-height: 300px;
+            width: 300px;
         }
     </style>
 </head>
